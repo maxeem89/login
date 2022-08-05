@@ -1,6 +1,6 @@
 ## Laravel Auth
 
-#### Laravel Auth is a Complete Build of Laravel 8 with Email Registration Verification, Social Authentication, User Profiles Built on Bootstrap 4.
+#### Laravel Login is a Complete Build of Laravel 9 with Registration Verification.
 
 #### Table of contents
 - [About](#about)
@@ -27,15 +27,15 @@
 - [Contributors](#Contributors)
 
 ### About
-Laravel 8 with user authentication, social media authentication, password recovery, and captcha protection. Uses official [Bootstrap 4](https://getbootstrap.com). This also makes full use of Controllers for the routes, templates for the views, and makes use of middleware for routing. Project can be stood up in minutes.
+Laravel 9 with user authentication,  Uses official [Bootstrap 5](https://getbootstrap.com). This also makes full use of Controllers for the routes, templates for the views, and makes use of middleware for routing. Project can be stood up in minutes.
 
 ### Features
 #### A [Laravel](https://laravel.com/) 8.x with [Bootstrap](https://getbootstrap.com) 4.x project.
 
 | Laravel Auth Features  |
 | :------------ |
-|Built on [Laravel](https://laravel.com/) 8|
-|Built on [Bootstrap](https://getbootstrap.com/) 4|
+|Built on [Laravel](https://laravel.com/) 9|
+|Built on [Bootstrap](https://getbootstrap.com/) 5|
 |Uses [MySQL] Database (can be changed)|
 |Uses [Artisan](https://laravel.com/docs/master/artisan) to manage database migration, schema creations, and create/publish page controller templates|
 |Dependencies are managed with [COMPOSER](https://getcomposer.org/)|
