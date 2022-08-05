@@ -18,6 +18,7 @@
     </nav>
     <div class="container">
    <h1 >hello from dashboard</h1>
+   <img src="{{url('/images/'.$user->image)}}" width="50" height="50">
 </div>
 </body>
 

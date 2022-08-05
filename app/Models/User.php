@@ -25,6 +25,8 @@ class User extends Authenticatable
         'barithday',
         'image',
         'password',
+        'status',
+        'login_attempt',
         'created_at',
     ];
 

@@ -14,16 +14,14 @@ use Illuminate\Support\Facades\Session as FacadesSession;
 
 class CustomAuthController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('throttle:3,20')->only('customLogin');
-    }
+    protected $user;
+    protected $newImageName;
     private $ipAddress;
+
     public function index()
     {
         return view('auth.login');
     }
-
 
     public function customLogin(Request $request)
     {
@@ -34,27 +32,37 @@ class CustomAuthController extends Controller
 
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials)) {
-            $this->ipAddress = new ipAddress();
-            $this->ipAddress->ip = $request->ip();
-            $this->ipAddress->save();
-          return view('auth.dashboard');
+            $this->user = User::where('email', $request->email)->first();
+            if ($this->user->status == 1) {
+                $this->ipAddress = new ipAddress();
+                $this->ipAddress->ip = $request->ip();
+                $this->ipAddress->save();
+                User::where('id', $this->user->id)->update(['login_attempt' => 0]);
+                $user= $this->user;
+                return view('auth.dashboard', get_defined_vars());
+            }
+
+            return redirect()->back()->with('message', 'Account not activate, please try again later or contact support.');
         }
-
-        return redirect("login")->withSuccess('Login details are not valid');
+        $this->user = User::where('email', $request->email)->first();
+            if($this->user){
+                if($this->user->login_attempt < 3){
+                $this->counter();
+                }
+                else{
+                    $this->updateStatus($this->user->id);
+                }
+            }
+        return redirect("login")->withErrors('Login details are not valid');
     }
-
-
 
     public function registration()
     {
         return view('auth.registration');
     }
 
-
     public function customRegistration(Request $request)
     {
-
-
         $request->validate([
             'name' =>  'required|max:255|regex:/(^[a-zA-Z]+[a-zA-Z0-9\\-]*$)/u',
             'email' => 'required',
@@ -64,23 +72,27 @@ class CustomAuthController extends Controller
             'image' => 'image|mimes:jpg,png,jpeg,gif,svg',
         ]);
         $image = $request->file('image');
-        $new_name = rand() . '.' . $image->getClientOriginalExtension();
-        $image->move(public_path("images"), $new_name);
+         if($image){
+        $this->newImageName = rand() . '.' . $image->getClientOriginalExtension();
+        $image->move(public_path("images"), $this->newImageName);
+         }
         $data = $request->all();
-        $this->create($data, $new_name);
-        return redirect("auth.dashboard")->withSuccess('have signed-in');
+        $this->create($data);
+        return view("auth.dashboard");
     }
 
-    public function create(array $data, $new_name)
+    public function create(array $data)
     {
         return User::create([
+
             'name' => $data['name'],
             'email' => $data['email'],
             'mobile' => $data['mobile'],
             'gender' => $data['gender'],
             'barithday' => $data['barithday'],
-            'image' => $new_name,
-            'password' => FacadesHash::make($data['password'])
+            'image' => $this->newImageName ?? 'defult.png',
+            'password' => FacadesHash::make($data['password']),
+            'login_attempt' => 0
         ]);
     }
 
@@ -91,7 +103,7 @@ class CustomAuthController extends Controller
             return view('auth.dashboard');
         }
 
-        return redirect("login")->withSuccess('are not allowed to access');
+        return redirect("login")->withErrors('are not allowed to access');
     }
 
 
@@ -103,4 +115,16 @@ class CustomAuthController extends Controller
         return Redirect('login');
     }
 
+    private function updateStatus($user_id)
+    {
+        $update_user = User::whereId($user_id)->update([
+            'status' => 0
+        ]);
+    }
+
+    private function counter(){
+             $login_attempt = $this->user->login_attempt;
+             $login_attempt++;
+            User::where('id',$this->user->id)->update(['login_attempt' => $login_attempt]);
+    }
 }

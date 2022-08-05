@@ -47,6 +47,7 @@ class Kernel extends HttpKernel
         'auth2' => [
             EnsureTokenIsValid::class,
         ]
+
     ];
 
     /**

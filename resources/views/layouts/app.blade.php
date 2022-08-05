@@ -48,7 +48,11 @@
                                     <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                                 </li>
                             @endif
-
+                            @if (Route::has('register-user'))
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('register-user') }}">{{ __('register-user') }}</a>
+                            </li>
+                        @endif
 
                         @else
                             <li class="nav-item dropdown">

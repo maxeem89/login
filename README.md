@@ -1,64 +1,102 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+## Laravel Auth
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+#### Laravel Auth is a Complete Build of Laravel 8 with Email Registration Verification, Social Authentication, User Profiles Built on Bootstrap 4.
 
-## About Laravel
+#### Table of contents
+- [About](#about)
+- [Features](#features)
+- [Installation Instructions](#installation-instructions)
+    - [Build the Front End Assets with Mix](#build-the-front-end-assets-with-mix)
+    - [Optionally Build Cache](#optionally-build-cache)
+- [Seeds](#seeds)
+    - [MakeDummyDataSeeder](#seeded-users)
+    - [MakeDummyIpSeeder](#seeded- ip addresses was clinat enter from this ip)
+- [command](#rest_command)
+    - [reset_command](#to reset login attempt to the zero  before the user will be locked every 15 minutes)
+- [Routes](#routes)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+    - [Get dashboard](#get- to enter to the dashboard)
+    - [get login](# go to login page)
+    - [post custom-login](#to validate data if valid redirect to dashboard else return to login page)
+    - [ get registration](#go to registration page)
+    - [custom-registration](#to validate name  dosn't accept spaces and underScore, email uniqe, phone uniqe, password min 6 with hashing it, gender male or female   )
+- [get logout](#distroy the session and go to login page)
+- [File Tree](#file-tree)
+- [Opening an Issue](#opening-an-issue)
+- [Laravel Auth License](#laravel-auth-license)
+- [Contributors](#Contributors)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### About
+Laravel 8 with user authentication, social media authentication, password recovery, and captcha protection. Uses official [Bootstrap 4](https://getbootstrap.com). This also makes full use of Controllers for the routes, templates for the views, and makes use of middleware for routing. Project can be stood up in minutes.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### Features
+#### A [Laravel](https://laravel.com/) 8.x with [Bootstrap](https://getbootstrap.com) 4.x project.
 
-## Learning Laravel
+| Laravel Auth Features  |
+| :------------ |
+|Built on [Laravel](https://laravel.com/) 8|
+|Built on [Bootstrap](https://getbootstrap.com/) 4|
+|Uses [MySQL] Database (can be changed)|
+|Uses [Artisan](https://laravel.com/docs/master/artisan) to manage database migration, schema creations, and create/publish page controller templates|
+|Dependencies are managed with [COMPOSER](https://getcomposer.org/)|
+|Laravel Scaffolding **User** and **Administrator Authentication**.|
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
 
-## Laravel Sponsors
+### Installation Instructions
+1. Run `git clone https://github.com/maxeem89/login.git`
+2. Create a MySQL database for the project
+    create database called login 
+3. take the .env file from installation zip file called installation.zip
+5. Run `composer install` from the projects root folder
+6. From the projects root folder run `php artisan key:generate`
+7. From the projects root folder run `php artisan migrate`
+8. From the projects root folder run `composer dump-autoload`
+9. From the projects root folder run `php artisan db:seed`
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
 
-### Premium Partners
+##### Seeded Users
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+|Email|Password|
+|:------------|:------------|:------------|
+|maxeemkh1989@gmail.com|123456789|123456789|
+|ahmed.example@gmail.com|123456789|
 
-## Contributing
+##### Blocked Types Seed List
+|Email|Password|
+|:------------|:------------|:------------|
+|ali.example@gmail.com|123456789|
+|because he tryed 3 times with a failed login attempt, his account became locked
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### Routes
 
-## Code of Conduct
+```bash
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+  POST       _ignition/execute-solution ...... ignition.executeSolution › Spatie\LaravelIgnition › ExecuteSolutionController
+  GET|HEAD   _ignition/health-check .................. ignition.healthCheck › Spatie\LaravelIgnition › HealthCheckController  
+  POST       _ignition/update-config ............... ignition.updateConfig › Spatie\LaravelIgnition › UpdateConfigController  
+  GET|HEAD   api/user ........................................................................................  
+  POST       custom-login .................................................. login.custom › CustomAuthController@customLogin  
+  POST       custom-registration ................................. register.custom › CustomAuthController@customRegistration  
+  GET|HEAD   dashboard ...................................................................... CustomAuthController@dashboard  
+  GET|HEAD   login ...................................................................... login › CustomAuthController@index  
+  GET|HEAD   logout .................................................................. logout › CustomAuthController@signOut  
+  GET|HEAD   registration ................................................ register-user › CustomAuthController@registration  
+  GET|HEAD   sanctum/csrf-cookie ......................... sanctum.csrf-cookie › Laravel\Sanctum › CsrfCookieController@show 
 
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
++--------+----------------------------------------+---------------------------------------+-----------------------------------------------+-----------------------------------------------------|
+| Domain | Method                                 | URI                                   | Name                                          | Action                                              |       
++--------+----------------------------------------+---------------------------------------+-----------------------------------------------+-----------------------------------------------------|
+|        | POST                                   | _ignition/execute-solution            | ignition.executeSolution                      | ExecuteSolutionController                           |
+|        | GET|HEAD                               | _ignition/health-check                | ignition.healthCheck                          | HealthCheckController                               |      
+|        | POST                                   | _ignition/update-config               | ignition.updateConfig                         | UpdateConfigController                              |
+|        | GET|HEAD                               | api/user                              |                                               |                                                     |
+|        | POST                                   | custom-login                          | login.custom                                  |CustomAuthController@customLogin                     |
+|        | POST                                   | custom-registration                   | register.custom                               | CustomAuthController@customRegistration             |
+|        | GET|HEAD                               | dashboard                             |                                               | CustomAuthController@dashboard                      |
+|        | GET|HEAD                               | login                                 | login                                         | CustomAuthController@index                          |
+|        | GET|HEAD                               | logout                                | logout                                        |CustomAuthController@registration                    |
+|        | GET|HEAD                               |  registration                         | register-user                                 | CustomAuthController@registration                   |
+|        | GET|HEAD                               | sanctum/csrf-cookie                   | Laravel\Sanctum                               | CsrfCookieController@show                           |          
+|        |+--------+----------------------------------------+---------------------------------------+-----------------------------------------------+-------------------------------------------------
+```
