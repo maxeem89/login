@@ -30,7 +30,7 @@
 Laravel 9 with user authentication,  Uses official [Bootstrap 5](https://getbootstrap.com). This also makes full use of Controllers for the routes, templates for the views, and makes use of middleware for routing. Project can be stood up in minutes.
 
 ### Features
-#### A [Laravel](https://laravel.com/) 8.x with [Bootstrap](https://getbootstrap.com) 4.x project.
+#### A [Laravel](https://laravel.com/) 9.x with [Bootstrap](https://getbootstrap.com) 5.x project.
 
 | Laravel Auth Features  |
 | :------------ |
